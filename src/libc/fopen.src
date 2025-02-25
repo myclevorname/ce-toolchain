@@ -1,0 +1,51 @@
+; C Implementation:
+;	Bytes: 69
+;	Cycles:
+;		Success:	64F+18R+24W+2+__frameset0+_ti_Open+__imulu
+;		Failure:	37F+18R+12W+1+__frameset0+_ti_Open
+
+
+; New:
+;	Bytes: 31
+;	Cycles:
+;		Success:	33F+18R+21W+2+_ti_Open
+;		Failure:	19F+18R+18W+2+_ti_Open
+
+
+; Savings:
+;	Bytes: 38
+;	Cycles:
+;		Success:	 31F+3W+__frameset0+__imulu
+;		Failure:	 18F-6W-1+__frameset0
+
+	assume	adl = 1
+
+	section	.text
+	weak	_fopen
+_fopen:
+	pop	de, bc
+	ex	(sp), hl
+	push	bc, de
+
+	push	bc, hl
+	call	_ti_Open
+	pop	hl, hl
+
+	or	a, a
+	sbc	hl, hl
+	dec	a
+	ret	c
+
+	ex	de, hl
+	ld	e, a
+
+	ld	hl, __file_streams
+	add	hl, de
+	add	hl, de
+	add	hl, de
+	inc	e
+	ld	(hl), de
+	ret
+
+	extern	_ti_Open
+	extern	__file_streams
