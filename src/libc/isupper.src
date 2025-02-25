@@ -3,11 +3,10 @@
 	section	.text
 	public	_isupper
 _isupper:
-	pop	de
+	pop	iy
 	ex	(sp),hl
-	push	de
 	ld	a,l
 	sub	a,65
 	sub	a,26
 	sbc	hl,hl
-	ret
+	jp	(iy)

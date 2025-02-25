@@ -3,12 +3,11 @@
 	section	.text
 	public	_isprint
 _isprint:
-	pop	de
+	pop	iy
 	ex	(sp),hl
-	push	de
 	ld	a,l
 	sub	a,32
 	add	a,-95
 	sbc	hl,hl
 	inc	hl
-	ret
+	jp	(iy)

@@ -3,13 +3,12 @@
 	section	.text
 	public	_isalpha
 _isalpha:
-	pop	de
+	pop	iy
 	ex	(sp),hl
-	push	de
 	ld	a,l
 	sub	a,65
 	res	5,a
 	add	a,-26
 	sbc	hl,hl
 	inc	hl
-	ret
+	jp	(iy)

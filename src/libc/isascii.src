@@ -3,10 +3,9 @@
 	section	.text
 	public	_isascii
 _isascii:
-	pop	de
+	pop	iy
 	ex	(sp),hl
-	push	de
 	sla	l
 	sbc	hl,hl
 	inc	hl
-	ret
+	jp	(iy)
