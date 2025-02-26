@@ -3,13 +3,14 @@
 	section	.text
 	weak	_feof
 
-;	Bytes: 10
-;	Cycles: 13F+7R+3W
+;	Bytes: 11
+;	Cycles: 14F+7R+3W
 _feof:
 	pop	iy
 	ex	(sp), hl
 	inc	hl
 	ld	a, (hl)
+	or	a, a
 	sbc	hl, hl
 	ld	l, a
 	jp	(iy)

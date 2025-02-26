@@ -27,7 +27,7 @@ _fopen:
 	ex	(sp), hl
 	push	bc, de
 
-	push	bc, hl
+	push	hl, bc		; first arg is BC, second is HL
 	call	_ti_Open
 	pop	hl, hl
 
