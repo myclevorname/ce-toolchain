@@ -1,0 +1,16 @@
+	assume	adl = 1
+
+	section	.text
+	weak	_remove
+_remove:
+	pop	de
+	ex	(sp), hl
+	push	de, hl
+	call	_ti_Delete
+	pop	af
+
+	ld	de, -1
+	add	hl, de
+	sbc	hl, hl
+	inc	hl
+	ret
